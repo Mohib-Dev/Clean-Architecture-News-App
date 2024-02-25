@@ -45,17 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 letterSpacing: 0.6, color: Colors.grey.shade700, fontSize: 18),
           ),
           SizedBox(height: height * 0.04),
-          // const SpinKitChasingDots(
-          //   color: Colors.pink,
-          //   size: 40,
-          // ),
           SpinKitWave(
             size: 40,
             color: Colors.grey.shade800,
             type: SpinKitWaveType.start,
             duration: const Duration(seconds: 2),
-            // controller: AnimationController(
-            //     vsync: this, duration: const Duration(seconds: 2)),
           ),
         ],
       ),

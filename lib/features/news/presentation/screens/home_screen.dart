@@ -13,16 +13,13 @@ class HomeScreen extends ConsumerWidget {
   HomeScreen({super.key});
 
   final format = DateFormat("MMMM dd,yyyy");
-
   FilterList? selectedMenu;
-
   String name = "al-jazeera-english";
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedMenu = ref.watch(selectedMenuProvider);
     final name = ref.watch(nameProvider);
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -33,19 +30,14 @@ class HomeScreen extends ConsumerWidget {
                     switch (item) {
                       case FilterList.bbcNews:
                         return "bbc-news";
-
                       case FilterList.aryNews:
                         return "ary-news";
-
                       case FilterList.cnn:
                         return "cnn";
-
                       case FilterList.independent:
                         return "independent";
-
                       case FilterList.reuters:
                         return "reuters";
-
                       case FilterList.alJazeera:
                         return "al-jazeera-english";
                     }

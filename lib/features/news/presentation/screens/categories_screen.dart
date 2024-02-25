@@ -2,6 +2,7 @@ import 'package:clean_architecture_news_app/core/error/failure.dart';
 import 'package:clean_architecture_news_app/features/news/domain/entities/article.dart';
 import 'package:clean_architecture_news_app/features/news/presentation/providers/article_provider.dart';
 import 'package:clean_architecture_news_app/features/news/presentation/providers/selected_category_provider.dart';
+import 'package:clean_architecture_news_app/features/news/presentation/widgets/custom_categories_button.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,10 +25,8 @@ class CategoriesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryName = ref.watch(selectedCategoryProvider);
-
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -37,41 +36,10 @@ class CategoriesScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(
-              height: 50,
-              child: ListView.builder(
-                itemCount: categoriesList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      ref
-                          .read(selectedCategoryProvider.notifier)
-                          .selectCategory(categoriesList[index]);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: categoryName == categoriesList[index]
-                                ? Colors.blue
-                                : Colors.grey,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Center(
-                              child: Text(
-                            categoriesList[index],
-                            style: GoogleFonts.poppins(
-                                fontSize: 13, color: Colors.white),
-                          )),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            //
+            CustomCategoriesButton(
+                categoriesList: categoriesList, categoryName: categoryName),
+            //
             const SizedBox(height: 20),
             Expanded(
               child: FutureBuilder<Either<Failure, List<ArticleEntity>>>(
